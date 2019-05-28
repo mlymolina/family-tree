@@ -47,7 +47,7 @@ export default class FamilyTree extends React.Component {
         <h3>
           {' '}{TreeNode.name}
         </h3>
-        {TreeNode.children && TreeNode.chidlren > 0 &&
+        {TreeNode.children && TreeNode.children.length > 0 &&
           <ul>
             {TreeNode.children.map((child, index) => <li key={index}>{this._renderTree(child)}</li>)}
           </ul>
