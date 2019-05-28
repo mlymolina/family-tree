@@ -3,4 +3,7 @@
   margin-left: 40px;
   margin-top: 40px;
 }
+ul {
+  list-style-type: none;
+}
 

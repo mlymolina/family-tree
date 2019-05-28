@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { TreeNode } from './TreeNode'
 
@@ -12,6 +13,13 @@ export default class FamilyTree extends React.Component {
 
   componentDidMount(){
     this.setState(this._initializeFamilyTree())
+  }
+
+  toggleVisibility(node){
+    node.visible = !(node.visible)
+    this.setState({
+      tree: this.state.tree
+    })
   }
 
   render() {
@@ -41,15 +49,20 @@ export default class FamilyTree extends React.Component {
     return {initialized: true, familyTree: tree}
   }
 
-  _renderTree(TreeNode) {
+  _renderTree(treeNode) {
     return(
       <div className='TreeNode'>
         <h3>
-          {' '}{TreeNode.name}
+          {treeNode.children.length > 0 &&
+            <a href="#" onClick={() => this.toggleVisibility(treeNode)}>
+              {treeNode.visible ? '[-]' : '[+]'}
+            </a>
+          }
+          {' '}{treeNode.name}
         </h3>
-        {TreeNode.children && TreeNode.children.length > 0 &&
+        {treeNode.visible && treeNode.children && treeNode.children.length > 0 &&
           <ul>
-            {TreeNode.children.map((child, index) => <li key={index}>{this._renderTree(child)}</li>)}
+            {treeNode.children.map((child, index) => <li key={index}>{this._renderTree(child)}</li>)}
           </ul>
         }
       </div>
