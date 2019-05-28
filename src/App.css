@@ -7,3 +7,20 @@ ul {
   list-style-type: none;
 }
 
+.actions {
+  display: none;
+}
+
+.treeNode h3 {
+  cursor: pointer;
+}
+
+.treeNode h3:hover .actions {
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.treeNode .actions button {
+  margin-left: 4px;
+  cursor: pointer;
+}

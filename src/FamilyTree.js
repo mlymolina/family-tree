@@ -17,6 +17,7 @@ export default class FamilyTree extends React.Component {
 
   toggleVisibility(node){
     node.visible = !(node.visible)
+    // force a state change by updating the root element
     this.setState({
       tree: this.state.tree
     })
@@ -51,7 +52,7 @@ export default class FamilyTree extends React.Component {
 
   _renderTree(treeNode) {
     return(
-      <div className='TreeNode'>
+      <div className='treeNode'>
         <h3>
           {treeNode.children.length > 0 &&
             <a href="#" onClick={() => this.toggleVisibility(treeNode)}>
@@ -59,6 +60,11 @@ export default class FamilyTree extends React.Component {
             </a>
           }
           {' '}{treeNode.name}
+          <div className="actions">
+            <button>DEL</button>
+            <button>ADD</button>
+          </div>
+          {/* TODO: Do I need to render the other dynamic props here? */}
         </h3>
         {treeNode.visible && treeNode.children && treeNode.children.length > 0 &&
           <ul>
